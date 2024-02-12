@@ -11,11 +11,12 @@ public class DirectoryPage extends BasePage {
 
     @Override
     protected boolean identifyPage() {
-        return getUrl().contains("/dashboard"); // Adjust based on your URL structure
+        return getUrl().contains(this.url); // Adjust based on your URL structure
     }
 
     public DirectoryPage(WebDriver driver) {
         super(driver);
+        this.url="https://demo.cyclos.org/ui/users/search";
     }
 
     public MyAdvertisementsPage clickMyAdvertisementsLink() {

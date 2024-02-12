@@ -17,11 +17,12 @@ public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
+        this.url = "https://demo.cyclos.org/ui/login";
     }
 
     @Override
     protected boolean identifyPage() {
-        return getUrl().contains("/dashboard"); // Adjust based on your URL structure
+        return getUrl().contains(this.url); // Adjust based on your URL structure
     }
 
     public DashboardPage login(String username, String password) {

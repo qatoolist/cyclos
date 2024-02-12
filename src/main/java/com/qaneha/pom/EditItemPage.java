@@ -17,11 +17,12 @@ public class EditItemPage extends BasePage {
 
     public EditItemPage(WebDriver driver) {
         super(driver);
+        this.url = "https://demo.cyclos.org/ui/marketplace/edit/7762070814175099199";
     }
 
     @Override
     protected boolean identifyPage() {
-        return getUrl().contains("/dashboard"); // Adjust based on your URL structure
+        return getUrl().contains(this.url); // Adjust based on your URL structure
     }
 
     public void setPrice(String price) {

@@ -11,12 +11,12 @@ public class EditAdvertisementTest extends BaseTest {
     @Test(dataProvider = "loginData")
     public void testEditAdvertisement(String username, String password) throws IOException {
         LoginPage loginPage = new LoginPage(driver);
+        loginPage.navigateToPage();
         loginPage.waitForPageLoad();
 
-        loginPage.login(username, password);
-
-        DashboardPage dashboardPage = new DashboardPage(driver);
+        DashboardPage dashboardPage = loginPage.login(username, password);
         dashboardPage.waitForPageLoad();
+
         DirectoryPage directoryPage = dashboardPage.clickDirectoryLink();
 
         MyAdvertisementsPage myAdsPage = directoryPage.clickMyAdvertisementsLink();

@@ -11,11 +11,12 @@ public class ItemViewPage extends BasePage {
 
     public ItemViewPage(WebDriver driver) {
         super(driver);
+        this.url="https://demo.cyclos.org/ui/marketplace/view/7762070814175099199";
     }
 
     @Override
     protected boolean identifyPage() {
-        return getUrl().contains("/dashboard"); // Adjust based on your URL structure
+        return getUrl().contains(this.url); // Adjust based on your URL structure
     }
 
     public EditItemPage clickEditButton() {

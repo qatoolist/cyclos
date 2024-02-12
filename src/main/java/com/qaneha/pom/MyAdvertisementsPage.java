@@ -17,11 +17,12 @@ public class MyAdvertisementsPage extends BasePage {
 
     public MyAdvertisementsPage(WebDriver driver) {
         super(driver);
+        this.url="https://demo.cyclos.org/ui/marketplace/self/simple/list";
     }
 
     @Override
     protected boolean identifyPage() {
-        return getUrl().contains("/dashboard"); // Adjust based on your URL structure
+        return getUrl().contains(this.url); // Adjust based on your URL structure
     }
 
     public void selectOrderByLastPublished() {

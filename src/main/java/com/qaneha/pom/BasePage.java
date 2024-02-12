@@ -24,6 +24,10 @@ public class BasePage {
         PageFactory.initElements(driver, this);
     }
 
+    public void navigateToPage(){
+        driver.get(this.url);
+    }
+
     public WebDriver getDriver() {
         return driver;
     }
@@ -36,9 +40,8 @@ public class BasePage {
         return driver -> {
             // Combine conditions for clarity and efficiency
             boolean readyStateComplete = driver != null && ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
-            boolean jqueryComplete = driver != null && (boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active == 0"); // check for jQuery if used
             boolean windowStopped = driver != null && (boolean) ((JavascriptExecutor) driver).executeScript("return window.stop == undefined || window.stop()");
-            return readyStateComplete && jqueryComplete && windowStopped;
+            return readyStateComplete && windowStopped;
         };
     }
     
@@ -56,16 +59,17 @@ public class BasePage {
         waitForElementToBeVisible(element).sendKeys(text);
     }
 
-    public void waitForPageLoad() {
+    public boolean waitForPageLoad() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         // Wait for standard conditions + javascript execution:
         wait.until(and(
-                titleIs(""),
                 urlContains(this.url),
                 visibilityOfElementLocated(By.cssSelector("body")),
                 expectedConditionsForJavascriptCompletion() // custom check
         ));
+
+        return identifyPage();
     }
 
     public void chooseFromDropdownByText(WebElement selectElement, String text) {
